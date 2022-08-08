@@ -12,7 +12,7 @@ jobs:
     - run: |
         git fetch --prune --unshallow
     - name: Set up Python 3.8
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
         python-version: 3.8
     - name: Install dependencies
@@ -31,14 +31,21 @@ jobs:
         pip install pytest
         export PYTHONPATH=src
         pytest
-    - name: Build and push Docker Image
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    - name: Login to DockerHub
       uses: Docker/login-action@v2
       with:
           image: pagidi1989/github_actions_project
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME}}
           password: ${{ secrets.DOCKERHUB_PASSWORD}}
-      if: github.ref == 'refs/heads/master' && job.status == 'success'
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+          push: true
+          tags: user/app:latest
+#       if: github.ref == 'refs/heads/master' && job.status == 'success'
 #       run: |
 #         git remote add DOCKER https://DOCKER:$DOCKERHUB_PASSWORD@git.DOCKER.com/$DOCKERHUB_USERNAME.git
 #         git push DOCKER HEAD:master -f
