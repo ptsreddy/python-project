@@ -32,7 +32,7 @@ jobs:
         export PYTHONPATH=src
         pytest
     - name: Build and push Docker Image
-      uses: actions/login-action@v2
+      uses: Docker/login-action@v2
       with:
           image: pagidi1989/github_actions
           registry: docker.io
