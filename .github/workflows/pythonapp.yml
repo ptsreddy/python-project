@@ -34,11 +34,11 @@ jobs:
     - name: Build and push Docker Image
       uses: Docker/login-action@v2
       with:
-          image: pagidi1989/github_actions
+          image: pagidi1989/github_actions_project
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME}}
           password: ${{ secrets.DOCKERHUB_PASSWORD}}
-#       if: github.ref == 'refs/heads/master' && job.status == 'success'
+      if: github.ref == 'refs/heads/master' && job.status == 'success'
 #       run: |
 #         git remote add DOCKER https://DOCKER:$DOCKERHUB_PASSWORD@git.DOCKER.com/$DOCKERHUB_USERNAME.git
 #         git push DOCKER HEAD:master -f
