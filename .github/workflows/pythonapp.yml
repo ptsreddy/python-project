@@ -40,5 +40,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD}}
 #       if: github.ref == 'refs/heads/master' && job.status == 'success'
 #       run: |
-#         git remote add DOCKER https://DOCKER:$DOCKER_API_TOKEN@git.DOCKER.com/$DOCKER_APP_NAME.git
+#         git remote add DOCKER https://DOCKER:$DOCKERHUB_PASSWORD@git.DOCKER.com/$DOCKERHUB_USERNAME.git
 #         git push DOCKER HEAD:master -f
