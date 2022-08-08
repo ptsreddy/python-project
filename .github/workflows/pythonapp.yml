@@ -40,11 +40,11 @@ jobs:
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME}}
           password: ${{ secrets.DOCKERHUB_PASSWORD}}
-    - name: Build and push
-      uses: docker/build-push-action@v3
-      with:
-          push: true
-          tags: user/app:latest
+#     - name: Build and push
+#       uses: docker/build-push-action@v3
+#       with:
+#           push: true
+#           tags: user/app:latest
 #       if: github.ref == 'refs/heads/master' && job.status == 'success'
 #       run: |
 #         git remote add DOCKER https://DOCKER:$DOCKERHUB_PASSWORD@git.DOCKER.com/$DOCKERHUB_USERNAME.git
