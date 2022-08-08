@@ -31,11 +31,11 @@ jobs:
         pip install pytest
         export PYTHONPATH=src
         pytest
-#     - name: Deploy to *****
+#     - name: Deploy to Docker
 #       env:
-#         *****_API_TOKEN: ${{ secrets.*****_API_TOKEN }}
-#         *****_APP_NAME: ${{ secrets.*****_APP_NAME }}
+#         DOCKER_API_TOKEN: ${{ secrets.DOCKER_API_TOKEN }}
+#         DOCKER_APP_NAME: ${{ secrets.DOCKER_APP_NAME }}
 #       if: github.ref == 'refs/heads/master' && job.status == 'success'
 #       run: |
-#         git remote add ****** https://*******:$******_API_TOKEN@git.******.com/$******_APP_NAME.git
-#         git push ******** HEAD:master -f
+#         git remote add DOCKER https://DOCKER:$DOCKER_API_TOKEN@git.DOCKER.com/$DOCKER_APP_NAME.git
+#         git push DOCKER HEAD:master -f
