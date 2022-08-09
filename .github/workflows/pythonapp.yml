@@ -36,13 +36,22 @@ jobs:
         pytest
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-    - name: Login to DockerHub
-      uses: Docker/login-action@v2
-      with:
-          image: pagidi1989/github_actions_project
-          registry: docker.io
-          username: ${{ secrets.DOCKERHUB_USERNAME}}
-          password: ${{ secrets.DOCKERHUB_PASSWORD}}
+    - name: run docker push
+      run: |
+          @docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          @docker push $BUILD_TAG
+          @docker push $LATEST_TAG          
+      env: 
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}  
+
+#     - name: Login to DockerHub
+#       uses: Docker/login-action@v2
+#       with:
+#           image: pagidi1989/github_actions_project
+#           registry: docker.io
+#           username: ${{ secrets.DOCKERHUB_USERNAME}}
+#           password: ${{ secrets.DOCKERHUB_PASSWORD}}
 #     - name: Build and push
 #       uses: docker/build-push-action@v3
 #       with:
